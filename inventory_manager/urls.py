@@ -23,5 +23,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('book_manager/', include('book_manager.urls')),
     path('', RedirectView.as_view(url='book_manager/', permanent=True)),
-    static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
