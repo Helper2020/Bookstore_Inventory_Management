@@ -35,7 +35,7 @@ class Book(models.Model):
     author = models.ForeignKey('Author', on_delete=models.SET_NULL, null=True)
     synopsis = models.TextField(max_length=1000, help_text='A summary of the book content.')
     isbn = models.CharField('ISBN', max_length=13, unique=True, help_text='13-digit ISBN')
-    price = models.DecimalField('Price', max_digits=3, decimal_places=2)
+    price = models.DecimalField('Price', max_digits=5, decimal_places=2)
     quantity = models.IntegerField('Quantity', help_text='Quanity in stock.')
     genre = models.ForeignKey(Genre, help_text='Select genre.' , on_delete=models.SET_NULL, null=True)
 
