@@ -1,0 +1,14 @@
+{% extends 'book_manager/base/base.html' %}
+
+{% block content %}
+    <h1>Author List</h1>
+    {% if author_catalog %}
+    <ul>
+        {% for author in author_catalog%}
+        <li>
+            <a href="{{ author.get_absolute_url }}">{{ author.last_name}} {{author.first_name}}</a> 
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'book_manager/base/base.html' %}
+
+{% block content %}
+    <h1> {{author.last_name}}, {{author.first_name }} Book List</h1>
+
+    <ol>
+        {% for book in author.book_set.all %}
+            <li><a href="{% url 'book-info' book.pk %}">{{book}}</a></li>
+        {% endfor %}
+    </ol>
+{% endblock %}
