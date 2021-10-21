@@ -12,4 +12,9 @@
         <li><strong>Books:</strong> {{ num_books }}</li>
         <li><strong>Authors:</strong> {{ num_authors }}</li>
     </ul>
+    <h3>Catalogs</h3>
+    <ul>
+        <li><a href="{% url "book-catalog" %}" >Book Catalog</a></li>
+        <li><a href="{% url "author-catalog" %}">Author Catalog</a></li>
+    </ul>
 {% endblock %}

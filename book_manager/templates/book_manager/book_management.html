@@ -1,1 +1,14 @@
 {% extends 'book_manager/base/base.html' %}
+
+{% block content %}
+    <h1>Book Management</h1>
+    <ul>
+        <li><a href="{% url "create-book" %}">Add Book</a></li>
+        <li>
+          <form action="{% url 'search-results' %}" method="get">
+            <label for="search">Use search for book information or to update book information</label><br>
+            <input name="q" id="search"  type="text" placeholder="Search by book title">
+          </form>
+        </li>
+    </ul>
+{% endblock %}

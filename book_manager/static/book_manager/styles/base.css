@@ -7,4 +7,6 @@ section{
     background: #f4f7f8;
     border: 1px solid black;
     font-family: 'Lato', sans-serif;
+    overflow: scroll;
 }
+
