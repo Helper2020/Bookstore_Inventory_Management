@@ -1,0 +1,23 @@
+{% extends 'book_manager/base/base.html' %}
+
+{% block content %} 
+    {% if messages %}
+        <ul class="messages"  autocomplete="off">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <h1>Add Author</h1>
+    <div>
+    <form action="" method="post">
+        {% csrf_token %}
+        <table>
+        {{ form.as_table }}
+        
+        </table>
+        <input type="submit" value="Add Author">
+    </form>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'book_manager/base/base.html' %}
+
+{% block content %}
+    <h1>Results</h1>
+    <ul>
+        {% for author in object_list %}
+        <li>      
+            <a href="{{ author.get_absolute_url }}">{{ author.last_name }}, {{author.first_name}}</a> 
+        </li>
+        <li><a href="{% url 'update-author' author.id %}">Update author Info</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

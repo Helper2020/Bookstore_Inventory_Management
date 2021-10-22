@@ -1,10 +1,12 @@
 from django import forms
+from django.utils.translation import gettext_lazy as _
 from book_manager.views import Book, Author
 
 class CreateBook(forms.ModelForm):
     class Meta:
         model = Book
         fields = '__all__'
+
     first_name = forms.CharField(max_length=30, required=True)
     last_name = forms.CharField(max_length=30)
     date_of_birth = forms.DateField( required=True)
@@ -25,3 +27,13 @@ class CreateBook(forms.ModelForm):
         self.cleaned_data['author'] = obj
 
         return super(CreateBook, self).clean()
+
+class CreateAuthor(forms.ModelForm):
+    class Meta:
+        model = Author
+        fields = '__all__'
+        help_texts = {
+            'first_name': _('Required'),
+            'last_name': _('Required'),
+            'date_of_birth': _('Required')
+        }
