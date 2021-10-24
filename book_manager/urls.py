@@ -15,5 +15,5 @@ urlpatterns = [
      path('author_management/update-author/<int:pk>', views.UpdateAuthor.as_view(), name='update-author'),
      path('author_catalog/', views.AuthorCatalog.as_view(), name='author-catalog'),
      path('author_catalog/<int:pk>', views.AuthorInfo.as_view(), name='author-info'),
-     path('contact/', views.contact, name='contact'),
+     path('contact/', views.contact, name='contact')
 ]

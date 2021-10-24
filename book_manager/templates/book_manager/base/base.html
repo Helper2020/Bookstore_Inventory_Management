@@ -28,10 +28,10 @@
                     <a class="nav-link {% if request.path == url %}active{% endif %}" aria-current="page" href="{{ url }}">Contact Support</a>
                 </div>
             </div>
-            <form class="d-flex">
+            {% comment %} <form class="d-flex">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-light" type="submit">Search</button>
-            </form>
+            </form> {% endcomment %}
         </div>
     </nav>
     </header>

@@ -1,9 +1,13 @@
 from django.shortcuts import render, redirect
+from django.core.mail import send_mail,BadHeaderError
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
 from django.views import generic
 from django.views.generic import ListView, UpdateView
 from .models import Book, Author
-from book_manager.forms import CreateAuthor, CreateBook
+from book_manager.forms import CreateAuthor, CreateBook, ContactForm
+
+
 
 
 
@@ -108,4 +112,20 @@ def author_management(request):
     return render(request, 'book_manager/author_management.html')
 
 def contact(request):
-    return render(request, 'book_manager/contact.html')
+    if request.method == 'GET':
+        form = ContactForm()
+    else:
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            issue = form.cleaned_data['issue']
+            email = form.cleaned_data['email']
+            message = form.cleaned_data['message']
+            try:
+                send_mail(issue, message, email, ['admin@example.com'])
+            except BadHeaderError:
+                return HttpResponse('Invalid header found.')
+                
+            messages.success(request, 'Your question has been submitted!')    
+            return redirect('contact')
+    return render(request, "book_manager/contact.html", {'form': form})
+

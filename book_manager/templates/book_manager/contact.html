@@ -1,1 +1,20 @@
 {% extends 'book_manager/base/base.html' %}
+
+{% block content %}
+    {% if messages %}
+      <ul class="messages"  autocomplete="off">
+          {% for message in messages %}
+          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+          {% endfor %}
+      </ul>
+    {% endif %}
+    
+    <h1>Contact Us</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="form-actions">
+          <button type="submit">Send</button>
+        </div>
+    </form>
+{% endblock %}

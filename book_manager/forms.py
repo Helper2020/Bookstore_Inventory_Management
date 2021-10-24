@@ -37,3 +37,8 @@ class CreateAuthor(forms.ModelForm):
             'last_name': _('Required'),
             'date_of_birth': _('Required')
         }
+
+class ContactForm(forms.Form):
+    email = forms.EmailField(required=True)
+    issue = forms.CharField(required=True)
+    message = forms.CharField(widget=forms.Textarea, required=True)
