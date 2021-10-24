@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms.models import ModelForm
 from django.urls import reverse 
 
 # Create your models here.
@@ -28,8 +29,6 @@ class Author(models.Model):
         return f'{self.last_name}, {self.first_name}'
     
 
-
-
 class Book(models.Model):
     title = models.CharField(max_length=200)
     author = models.ForeignKey('Author', on_delete=models.SET_NULL, null=True)
@@ -45,6 +44,9 @@ class Book(models.Model):
     def __str__(self):
         return self.title
     
-
+class SupportTicket(models.Model):
+    email = models.EmailField(max_length=100)
+    topic = models.CharField(max_length=200)
+    message = models.TextField(max_length=500)
  
 

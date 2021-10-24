@@ -1,5 +1,6 @@
 from django import forms
 from django.utils.translation import gettext_lazy as _
+from book_manager.models import SupportTicket
 from book_manager.views import Book, Author
 
 class CreateBook(forms.ModelForm):
@@ -38,7 +39,13 @@ class CreateAuthor(forms.ModelForm):
             'date_of_birth': _('Required')
         }
 
-class ContactForm(forms.Form):
-    email = forms.EmailField(required=True)
-    issue = forms.CharField(required=True)
-    message = forms.CharField(widget=forms.Textarea, required=True)
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model = SupportTicket
+        fields = '__all__'
+
+        help_texts = {
+            'email': _('Required'),
+            'topic': _('Required'),
+            'message': _('Required')
+        }

@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
 from django.views import generic
 from django.views.generic import ListView, UpdateView
-from .models import Book, Author
+from .models import Book, Author, SupportTicket
 from book_manager.forms import CreateAuthor, CreateBook, ContactForm
 
 
@@ -67,6 +67,10 @@ class SearchAuthorResultsView(ListView):
         object_list = Author.objects.filter(first_name__icontains=first_name, last_name__icontains=last_name)
         return object_list
 
+class ContactView(generic.DetailView):
+    model = SupportTicket
+    template_name = 'book_manager/contact.html'
+
 def create_author(request):
     
     form = CreateAuthor(request.POST or None)
@@ -117,11 +121,12 @@ def contact(request):
     else:
         form = ContactForm(request.POST)
         if form.is_valid():
-            issue = form.cleaned_data['issue']
+            topic = form.cleaned_data['topic']
             email = form.cleaned_data['email']
             message = form.cleaned_data['message']
+            form.save()
             try:
-                send_mail(issue, message, email, ['admin@example.com'])
+                send_mail(topic, message, email, ['admin@example.com'])
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
                 
