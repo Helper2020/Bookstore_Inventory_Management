@@ -126,5 +126,11 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-DEFAULT_FROM_EMAIL = 'Starcraft1010@outlook.com'
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# Email settings
+
+# aukigxwcrfdgnvin
+EMAIL_HOST_USER = 'GFuentesData@gmail.com'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_PASSWORD = 'aukigxwcrfdgnvin'

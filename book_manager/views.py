@@ -6,7 +6,7 @@ from django.views import generic
 from django.views.generic import ListView, UpdateView
 from .models import Book, Author, SupportTicket
 from book_manager.forms import CreateAuthor, CreateBook, ContactForm
-
+from django.conf import settings
 
 
 
@@ -122,11 +122,11 @@ def contact(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             topic = form.cleaned_data['topic']
-            email = form.cleaned_data['email']
+            from_email = form.cleaned_data['email']
             message = form.cleaned_data['message']
             form.save()
             try:
-                send_mail(topic, message, email, ['admin@example.com'])
+                send_mail(topic, message, from_email, ['GFuentesData@gmail.com'], fail_silently=False)
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
                 
