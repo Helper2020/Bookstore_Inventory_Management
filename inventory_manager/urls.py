@@ -18,9 +18,12 @@ from django.urls import path, include
 from django.views.generic import RedirectView
 from django.conf import settings
 from django.conf.urls.static import static
+from django.conf.urls import handler404
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('book_manager/', include('book_manager.urls')),
     path('', RedirectView.as_view(url='book_manager/', permanent=True)),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+handler404 = 'book_manager.views.error_404_handler'

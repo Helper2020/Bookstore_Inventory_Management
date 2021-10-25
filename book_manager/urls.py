@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from django.conf.urls import handler404
 
 urlpatterns = [
      path('', views.index, name='index'),
@@ -17,3 +18,4 @@ urlpatterns = [
      path('author_catalog/<int:pk>', views.AuthorInfo.as_view(), name='author-info'),
      path('contact/', views.contact, name='contact')
 ]
+

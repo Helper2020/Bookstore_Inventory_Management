@@ -134,3 +134,5 @@ def contact(request):
             return redirect('contact')
     return render(request, "book_manager/contact.html", {'form': form})
 
+def error_404_handler(request, exception):
+    return render(request, 'book_manager/404.html')
