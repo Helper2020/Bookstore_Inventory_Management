@@ -136,3 +136,6 @@ def contact(request):
 
 def error_404_handler(request, exception):
     return render(request, 'book_manager/404.html')
+
+def error_500_handler(request):
+    return render(request, 'book_manager/500.html')
