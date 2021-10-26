@@ -7,7 +7,7 @@
         <li>      
             <a href="{{ author.get_absolute_url }}">{{ author.last_name }}, {{author.first_name}}</a> 
         </li>
-        <li><a href="{% url 'update-author' author.id %}">Update author Info</a></li>
+        <a href="{% url 'update-author' author.id %}">Update author Info</a>
         {% endfor %}
     </ul>
 {% endblock %}

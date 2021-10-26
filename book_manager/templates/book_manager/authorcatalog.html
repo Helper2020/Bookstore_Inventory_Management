@@ -11,4 +11,20 @@
         {% endfor %}
     </ul>
     {% endif %}
+
+    <form action="{% url 'author-results' %}" method="get">
+    <label for="search">Use search for author information or to update author information</label><br>
+        <div>
+            <label for="firstname">Enter first name of author: </label>
+            <input type="text" name="firstname" id="firstname" required>
+        </div>
+        <div>
+            <label for="lastname">Enter last name of author: </label>
+            <input type="text" name="lastname" id="lastname" required>
+        </div>
+        <div>
+            <input type="submit" value="Search">
+        </div>
+    </form>
+
 {% endblock %}

@@ -2,10 +2,31 @@
 
 {% block content %}
     <h1> {{author.last_name}}, {{author.first_name }} Book List</h1>
+    <p>{{author.date_of_birth}} - {% if author.date_of_death %}{{author.date_of_death}}{% endif %}</p>
+    
+    {% if author.book_set.count > 0 %}
+        <ol>
+            {% for book in author.book_set.all %}
+                <li><a href="{% url 'book-info' book.pk %}">{{book}}</a></li>
+            {% endfor %}
+        </ol>
+    {% else %}
+        <p>No Books listed.</p>
+    {% endif %}
+    
+    <form action="{% url 'author-results' %}" method="get">
+        <label for="search">Use search for author information or to update author information</label><br>
+        <div>
+            <label for="firstname">Enter first name of author: </label>
+            <input type="text" name="firstname" id="firstname" required>
+        </div>
+        <div>
+            <label for="lastname">Enter last name of author: </label>
+            <input type="text" name="lastname" id="lastname" required>
+        </div>
+        <div>
+            <input type="submit" value="Search">
+        </div>
+    </form>
 
-    <ol>
-        {% for book in author.book_set.all %}
-            <li><a href="{% url 'book-info' book.pk %}">{{book}}</a></li>
-        {% endfor %}
-    </ol>
 {% endblock %}

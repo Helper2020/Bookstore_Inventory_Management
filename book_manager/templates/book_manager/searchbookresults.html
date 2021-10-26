@@ -2,12 +2,22 @@
 
 {% block content %}
     <h1>Results</h1>
-    <ul>
-        {% for book in object_list %}
-        <li>      
-            <a href="{{ book.get_absolute_url }}">{{ book.title }}</a> ({{book.author}})
-        </li>
-        <li><a href="{% url 'update-book' book.id %}">Update Book Info</a></li>
-        {% endfor %}
-    </ul>
+
+    {% if object_list %}
+        <ul>
+            {% for book in object_list %}
+            <li>      
+                <a href="{{ book.get_absolute_url }}">{{ book.title }}</a> ({{book.author}})
+            </li>
+            <a href="{% url 'update-book' book.id %}">Update Book Info</a>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No books found.</p>
+    {% endif %}
+        <form action="{% url 'book-results' %}" method="get">
+            <label for="search">Use search for book information or to update book information</label><br>
+            <input name="q" id="search"  type="text" placeholder="Search by book title">
+            <input type="submit" value="search">
+        </form>
 {% endblock %}
